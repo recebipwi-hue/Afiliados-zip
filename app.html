@@ -4,44 +4,166 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aplicativo — Afiliados Passo a Passo IA</title>
-<meta name="description" content="Estado atual do aplicativo Afiliados Passo a Passo IA.">
+<meta name="description" content="Editor de vídeo, roteiro sem rosto, histórico e suporte. Funciona no navegador, sem servidor.">
 <meta name="theme-color" content="#5B3DF5">
-<meta property="og:title" content="Aplicativo — Afiliados Passo a Passo IA">
-<meta property="og:description" content="Estado atual do aplicativo Afiliados Passo a Passo IA.">
-<meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- PIXEL_FACEBOOK_AQUI
+     Espaço reservado para o Pixel do Facebook (Meta Pixel). Está desativado de propósito.
+     Para ativar: cole o código do seu Pixel aqui. ANTES, atualize a página de privacidade
+     e peça consentimento do visitante (LGPD). Veja o README.
+-->
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="app.css">
 </head>
-<body>
+<body class="app">
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <header class="site"><div class="wrap bar">
 <a class="brand" href="index.html" aria-label="Afiliados Passo a Passo IA — página inicial"><img src="logo-mark.svg" alt="" width="40" height="40"><span>Afiliados<small>Passo a Passo IA</small></span></a>
-<button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
-<nav id="menu" aria-label="Principal">
-<a href="index.html#ferramentas">Ferramentas</a>
-<a href="index.html#como-funciona">Como funciona</a>
-<a href="index.html#recursos">Recursos</a>
-<a href="index.html#faq">Perguntas</a>
-<a href="contato.html">Contato</a>
-<a class="btn" href="index.html#lista-de-espera">Lista de espera</a>
-</nav></div></header>
-<main id="conteudo">
+<a class="btn ghost small" href="index.html" aria-label="Voltar para o início">← Início</a>
+</div></header>
 
-<section class="page"><div class="wrap">
-<h1>O aplicativo ainda está em construção</h1>
-<p class="lead">As ferramentas ainda não existem nesta versão. Não há nada para enviar, editar ou baixar aqui.</p>
-<h2>O que vem a seguir</h2>
-<ul>
-<li><strong>Primeiro:</strong> gerador de roteiro com IA para afiliados.</li>
-<li><strong>Depois:</strong> montagem e adaptação de vídeo para cada rede e formato.</li>
-<li><strong>Mais adiante:</strong> contas, limites de uso e avaliação de vídeo gerado por IA.</li>
-</ul>
-<div class="row"><a class="btn" href="index.html#lista-de-espera">Entrar na lista de espera</a><a class="btn ghost" href="index.html#ferramentas">Ver as ferramentas previstas</a></div>
-</div></section>
-</main>
+<main id="conteudo"><div class="wrap">
+<h1>Estúdio para afiliados sem rosto</h1>
+<p class="lead">Tudo roda no seu navegador: seus vídeos não são enviados a nenhum servidor. O app ajuda a preparar o conteúdo, mas não garante vendas, alcance nem resultados.</p>
+
+<!-- ================= EDITAR VÍDEO ================= -->
+<div class="panel" id="tab-editar" role="tabpanel" aria-labelledby="t-editar">
+<div class="box">
+<h2>1. Escolha o vídeo</h2>
+<input class="file-input" id="fileIn" type="file" accept="video/*">
+<label class="btn big full" for="fileIn">📁 Escolher vídeo do celular</label>
+<p class="note" id="fileInfo">Nenhum vídeo escolhido.</p>
+<video id="srcVideo" class="hidden-video" playsinline preload="auto"></video>
+</div>
+
+<div class="box">
+<h2>2. Plataforma e proporção</h2>
+<fieldset><legend>Plataforma</legend>
+<div class="chips-row">
+<label class="chip"><input type="radio" name="plat" value="tiktok" checked><span>TikTok</span></label>
+<label class="chip"><input type="radio" name="plat" value="reels"><span>Reels</span></label>
+<label class="chip"><input type="radio" name="plat" value="shorts"><span>Shorts</span></label>
+</div></fieldset>
+<fieldset><legend>Proporção</legend>
+<div class="chips-row">
+<label class="chip"><input type="radio" name="ratio" value="9:16" checked><span>9:16</span></label>
+<label class="chip"><input type="radio" name="ratio" value="1:1"><span>1:1</span></label>
+<label class="chip"><input type="radio" name="ratio" value="16:9"><span>16:9</span></label>
+</div></fieldset>
+<p class="note">As três plataformas usam vídeo vertical (9:16). A plataforma define a margem segura das legendas; confira sempre as regras atuais de cada rede.</p>
+</div>
+
+<div class="box">
+<h2>3. Enquadramento</h2>
+<div class="slider"><label for="fx">Horizontal <output id="fxo">50</output></label><input id="fx" type="range" min="0" max="100" value="50"></div>
+<div class="slider"><label for="fy">Vertical <output id="fyo">50</output></label><input id="fy" type="range" min="0" max="100" value="50"></div>
+<div class="slider"><label for="zoom">Zoom <output id="zo">100%</output></label><input id="zoom" type="range" min="100" max="200" step="5" value="100"></div>
+<p class="note">O vídeo é cortado (crop) para preencher o quadro e nunca é esticado, então a imagem não deforma.</p>
+</div>
+
+<div class="box">
+<h2>4. Estilo</h2>
+<fieldset><legend>Estilo do vídeo</legend>
+<div class="chips-row">
+<label class="chip"><input type="radio" name="style" value="original" checked><span>Original</span></label>
+<label class="chip"><input type="radio" name="style" value="dinamico"><span>Dinâmico</span></label>
+<label class="chip"><input type="radio" name="style" value="legendado"><span>Legendado</span></label>
+</div></fieldset>
+<p class="note"><strong>Original:</strong> só o enquadramento. <strong>Dinâmico:</strong> zoom lento, cor um pouco mais viva e barra de progresso. <strong>Legendado:</strong> mostra o texto que você digitar.</p>
+<div id="capsBox" hidden>
+<label for="caps">Legendas (uma linha por trecho)</label>
+<textarea id="caps" class="tall" maxlength="1200" placeholder="Ex.:&#10;Olha esse achado&#10;Cabe na bolsa&#10;Link na bio"></textarea>
+<p class="note">Não há legenda automática (isso exigiria um serviço externo). As linhas são distribuídas em partes iguais ao longo do vídeo. Dica: use o “Texto para tela” do roteiro.</p>
+</div>
+</div>
+
+<div class="box">
+<h2>5. Prévia</h2>
+<div class="stage"><canvas id="pv" width="360" height="640" aria-label="Prévia do vídeo editado"></canvas></div>
+<div class="slider" style="margin-top:10px"><label for="seek">Posição</label><input id="seek" type="range" min="0" max="1" step="0.01" value="0" disabled></div>
+<div class="btns"><button class="btn ghost big" id="btnPlay" type="button" disabled>▶ Ver prévia</button></div>
+</div>
+
+<div class="box">
+<h2>6. Gerar e baixar</h2>
+<button class="btn big full" id="btnGen" type="button" disabled>🎬 Gerar vídeo</button>
+<progress id="prog" max="100" value="0" hidden></progress>
+<div class="btns"><button class="btn danger small" id="btnCancel" type="button" hidden>Cancelar</button></div>
+<p class="status" id="genStatus" role="status" aria-live="polite"></p>
+<p class="note">O vídeo é gravado em tempo real no seu aparelho, então leva o mesmo tempo da duração do vídeo. Mantenha a tela ligada e esta aba aberta até terminar. Funciona melhor no Chrome.</p>
+<div class="result" id="result" hidden>
+<video id="outVideo" controls playsinline></video>
+<div class="btns"><a class="btn big" id="btnDownload" href="#" download>⬇ Baixar vídeo</a></div>
+<p class="note" id="fmtNote"></p>
+</div>
+</div>
+</div>
+
+<!-- ================= CRIAR ROTEIRO ================= -->
+<div class="panel" id="tab-roteiro" role="tabpanel" aria-labelledby="t-roteiro" hidden>
+<div class="box">
+<h2>Criar do zero, sem rosto</h2>
+<p class="note" style="margin-top:0">O roteiro é montado a partir de modelos prontos, <strong>sem IA</strong> e sem enviar nada para servidor. Troque os trechos [entre colchetes] por informações reais sobre o produto.</p>
+<form id="rot-form" novalidate>
+<div>
+<label for="produto">Ideia do produto</label>
+<textarea id="produto" class="tall" maxlength="120" aria-describedby="produto-err produto-hint" required placeholder="Ex.: garrafa térmica de 1 litro"></textarea>
+<p class="note" id="produto-hint">Escreva o nome do produto ou o benefício principal, em poucas palavras.</p>
+<p class="err-msg" id="produto-err"></p>
+</div>
+<fieldset><legend>Tipo</legend>
+<div class="chips-row">
+<label class="chip"><input type="radio" name="tipo" value="review" checked><span>Review</span></label>
+<label class="chip"><input type="radio" name="tipo" value="venda"><span>Venda</span></label>
+<label class="chip"><input type="radio" name="tipo" value="informativo"><span>Informativo</span></label>
+</div></fieldset>
+<fieldset><legend>Estilo</legend>
+<div class="chips-row">
+<label class="chip"><input type="radio" name="rstyle" value="ugc" checked><span>UGC sem rosto</span></label>
+<label class="chip"><input type="radio" name="rstyle" value="produto"><span>Produto</span></label>
+<label class="chip"><input type="radio" name="rstyle" value="textotela"><span>Texto na tela</span></label>
+</div></fieldset>
+<button class="btn big full" type="submit">✍️ Gerar roteiro</button>
+</form>
+</div>
+<div id="rotOut"></div>
+<p class="status" id="rotStatus" role="status" aria-live="polite"></p>
+</div>
+
+<!-- ================= HISTÓRICO ================= -->
+<div class="panel" id="tab-historico" role="tabpanel" aria-labelledby="t-historico" hidden>
+<div class="box">
+<h2>Histórico</h2>
+<p class="note" style="margin-top:0">Tudo fica salvo só neste aparelho e neste navegador. Se você limpar os dados do navegador, o histórico some. Nada é enviado para servidor.</p>
+<div class="btns"><button class="btn danger small" id="btnClear" type="button">Apagar todo o histórico</button></div>
+<p class="status" id="histStatus" role="status" aria-live="polite"></p>
+</div>
+<div id="histBox"></div>
+</div>
+
+<!-- ================= SUPORTE ================= -->
+<div class="panel" id="tab-suporte" role="tabpanel" aria-labelledby="t-suporte" hidden>
+<div class="box">
+<h2>Suporte</h2>
+<p class="draft">Aviso honesto: o envio de mensagens ainda não está configurado. Por enquanto sua mensagem fica salva só neste aparelho (aba Histórico) e poderá ser enviada quando o suporte for configurado.</p>
+<form id="sup-form" novalidate>
+<div><label for="s-email">E-mail para resposta</label><input id="s-email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="s-email-err" required><p class="err-msg" id="s-email-err"></p></div>
+<div><label for="s-cat">Categoria</label>
+<select id="s-cat" name="categoria" aria-describedby="s-cat-err" required><option value="">Escolha uma categoria</option><option>Dúvida</option><option>Problema técnico</option><option>Sugestão</option><option>Privacidade e dados</option><option>Outro assunto</option></select><p class="err-msg" id="s-cat-err"></p></div>
+<div><label for="s-ass">Assunto</label><input id="s-ass" name="assunto" maxlength="120" aria-describedby="s-ass-err" required><p class="err-msg" id="s-ass-err"></p></div>
+<div><label for="s-msg">Mensagem</label><textarea id="s-msg" name="mensagem" maxlength="3000" aria-describedby="s-msg-err" required></textarea><p class="err-msg" id="s-msg-err"></p></div>
+<div class="hp" aria-hidden="true"><label for="s-web">Não preencha este campo</label><input id="s-web" name="website" tabindex="-1" autocomplete="off"></div>
+<button class="btn big full" type="submit">Enviar mensagem</button>
+<p class="status" id="supStatus" role="status" aria-live="polite"></p>
+</form>
+</div>
+</div>
+
+</div></main>
+
 <footer class="site"><div class="wrap">
 <div><p><strong>Afiliados Passo a Passo IA</strong></p>
-<p>Projeto em desenvolvimento. Esta versão do site apresenta a proposta; o aplicativo ainda não está disponível.</p></div>
+<p>Projeto em desenvolvimento. Versão beta: as ferramentas básicas funcionam no seu navegador, sem servidor.</p></div>
 <ul aria-label="Links do rodapé">
 <li><a href="index.html">Início</a></li>
 <li><a href="app.html">Aplicativo</a></li>
@@ -49,6 +171,14 @@
 <li><a href="privacidade.html">Privacidade</a></li>
 <li><a href="termos.html">Termos de uso</a></li>
 </ul></div></footer>
+
+<nav class="tab-nav" role="tablist" aria-label="Funções do aplicativo">
+<button type="button" role="tab" id="t-editar" aria-controls="tab-editar" aria-selected="true"><span class="ico" aria-hidden="true">🎬</span>Editar vídeo</button>
+<button type="button" role="tab" id="t-roteiro" aria-controls="tab-roteiro" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">✍️</span>Roteiro</button>
+<button type="button" role="tab" id="t-historico" aria-controls="tab-historico" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">🗂️</span>Histórico</button>
+<button type="button" role="tab" id="t-suporte" aria-controls="tab-suporte" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">💬</span>Suporte</button>
+</nav>
+
 <script src="config.js"></script>
-<script src="main.js"></script>
+<script src="app.js"></script>
 </body></html>
