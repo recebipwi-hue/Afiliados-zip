@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fale com o suporte — Afiliados Passo a Passo IA</title>
+<meta name="description" content="Página de contato e suporte do Afiliados Passo a Passo IA.">
+<meta name="theme-color" content="#5B3DF5">
+<meta property="og:title" content="Fale com o suporte — Afiliados Passo a Passo IA">
+<meta property="og:description" content="Página de contato e suporte do Afiliados Passo a Passo IA.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="site"><div class="wrap bar">
+<a class="brand" href="index.html" aria-label="Afiliados Passo a Passo IA — página inicial"><img src="logo-mark.svg" alt="" width="40" height="40"><span>Afiliados<small>Passo a Passo IA</small></span></a>
+<button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+<nav id="menu" aria-label="Principal">
+<a href="index.html#ferramentas">Ferramentas</a>
+<a href="index.html#como-funciona">Como funciona</a>
+<a href="index.html#recursos">Recursos</a>
+<a href="index.html#faq">Perguntas</a>
+<a href="contato.html" aria-current="page">Contato</a>
+<a class="btn" href="index.html#lista-de-espera">Lista de espera</a>
+</nav></div></header>
+<main id="conteudo">
+
+<section class="page"><div class="wrap">
+<h1>Fale com o suporte</h1>
+<p class="draft">O envio de mensagens ainda não está ativo. O formulário valida os campos, mas não envia nem guarda nada. O envio real será feito em uma etapa futura.</p>
+<form id="support-form" novalidate>
+<div><label for="nome">Nome <small>(opcional)</small></label><input id="nome" name="nome" autocomplete="name"></div>
+<div><label for="email">E-mail para resposta</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="email-err" required><p class="err-msg" id="email-err"></p></div>
+<div><label for="categoria">Categoria</label>
+<select id="categoria" name="categoria" aria-describedby="categoria-err" required>
+<option value="">Escolha uma categoria</option><option>Dúvida sobre o projeto</option><option>Problema técnico</option><option>Sugestão</option><option>Privacidade e dados</option><option>Outro assunto</option></select><p class="err-msg" id="categoria-err"></p></div>
+<div><label for="assunto">Assunto</label><input id="assunto" name="assunto" maxlength="120" aria-describedby="assunto-err" required><p class="err-msg" id="assunto-err"></p></div>
+<div><label for="mensagem">Descrição</label><textarea id="mensagem" name="mensagem" maxlength="3000" aria-describedby="mensagem-err" required></textarea><p class="err-msg" id="mensagem-err"></p></div>
+<div class="hp" aria-hidden="true"><label for="website">Não preencha este campo</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+<button class="btn" type="submit">Enviar mensagem</button>
+<div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+</form>
+</div></section>
+</main>
+<footer class="site"><div class="wrap">
+<div><p><strong>Afiliados Passo a Passo IA</strong></p>
+<p>Projeto em desenvolvimento. Esta versão do site apresenta a proposta; o aplicativo ainda não está disponível.</p></div>
+<ul aria-label="Links do rodapé">
+<li><a href="index.html">Início</a></li>
+<li><a href="app.html">Aplicativo</a></li>
+<li><a href="contato.html">Contato</a></li>
+<li><a href="privacidade.html">Privacidade</a></li>
+<li><a href="termos.html">Termos de uso</a></li>
+</ul></div></footer>
+<script src="config.js"></script>
+<script src="main.js"></script>
+</body></html>
