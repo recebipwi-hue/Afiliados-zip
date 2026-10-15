@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AFILIAC V9 - 70%</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+
+<div class="max-w-[500px] mx-auto p-5">
+
+  <!-- TOPO -->
+  <h1 class="text-center font-black text-3xl mt-5">AFILIAC V9</h1>
+  <p class="text-center text-purple-400 font-bold">70% DE COMISSÃO PRA VOCÊ</p>
+  <p id="indicado" class="text-center text-xs text-zinc-500 mt-2"></p>
+
+  <!-- PRODUTO -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 mt-6">
+    <h2 class="font-bold text-xl">Acesso VIP - Pack Completo</h2>
+    <p class="text-sm text-zinc-400 mt-2">Você recebe acesso imediato ao conteúdo + direito de revender com 70%.</p>
+    <div class="mt-4 text-3xl font-black">R$ 27,00</div>
+    <button onclick="document.getElementById('checkout').scrollIntoView()" class="w-full bg-white text-black font-black py-4 rounded-xl mt-4">QUERO COMPRAR AGORA</button>
+  </div>
+
+  <!-- GERADOR DE LINK -->
+  <div id="checkout" class="bg-zinc-900 border border-purple-600/30 rounded-2xl p-5 mt-6">
+    <h3 class="font-black">GERAR MEU LINK DE AFILIADO</h3>
+    <p class="text-xs text-zinc-500 mt-1">Crie seu código e comece a vender com 70%</p>
+
+    <input id="codigo" placeholder="Seu código ex: vendas_bras098" class="w-full p-3 bg-black border border-zinc-700 rounded-xl mt-4 text-white">
+    <input id="pix" placeholder="Sua chave PIX" class="w-full p-3 bg-black border border-zinc-700 rounded-xl mt-3 text-white">
+
+    <button onclick="gerar()" class="w-full bg-purple-600 font-bold py-4 rounded-xl mt-3">GERAR MEU LINK 70%</button>
+
+    <div id="resultado" class="hidden mt-4">
+      <p class="text-xs text-green-400 font-bold">LINK GERADO!</p>
+      <input id="linkfinal" readonly class="w-full p-3 bg-black border border-zinc-700 rounded-xl mt-2 text-xs text-white">
+      <button onclick="navigator.clipboard.writeText(document.getElementById('linkfinal').value); alert('COPIADO!')" class="w-full bg-white text-black font-black py-3 rounded-xl mt-2">COPIAR LINK</button>
+      <p class="text-[11px] text-zinc-500 mt-2 text-center">Quando alguém comprar pelo seu link, 70% vai pro seu PIX.</p>
+    </div>
+  </div>
+
+  <button onclick="comprar()" class="w-full bg-green-600 font-black py-4 rounded-xl mt-6">SIMULAR COMPRA TESTE</button>
+
+</div>
+
+<script>
+// PEGA AFILIADO DA URL
+let af = new URLSearchParams(location.search).get('af');
+if(af){
+  localStorage.setItem('afiliado_atual', af);
+  document.getElementById('indicado').innerText = 'Indicado por: ' + af + ' ✅';
+}
+
+function gerar(){
+  let cod = document.getElementById('codigo').value.trim().toLowerCase();
+  let pix = document.getElementById('pix').value.trim();
+  if(!cod ||!pix){ alert('Coloca código e PIX'); return; }
+  localStorage.setItem('meu_codigo', cod);
+  localStorage.setItem('meu_pix', pix);
+  let link = 'https://recebipwi-hue.github.io/Afiliados-zip/v9.html?af=' + cod;
+  document.getElementById('linkfinal').value = link;
+  document.getElementById('resultado').classList.remove('hidden');
+}
+
+function comprar(){
+  let afiliado = localStorage.getItem('afiliado_atual');
+  if(afiliado){
+    alert('COMPRA FEITA! 70% iria para o afiliado: ' + afiliado + '\n(Seu sistema de PIX entra aqui)');
+  } else {
+    alert('Compra direta - sem afiliado. Você é o dono.');
+  }
+}
+</script>
+</body>
+</html>
